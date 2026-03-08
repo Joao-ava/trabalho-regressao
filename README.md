@@ -8,6 +8,9 @@ Trabalho para matéria de inteligência artificial computacional
 . # raiz do projeto
 ├───requirements.txt # dependências
 ├───app # código do projeto
+│   ├─── data.py # carregar os dados
+│   ├─── linear_regression.py # carregar os dados
+│   └─── metrics.py # carregar os dados
 └───data # dados para o projeto
 ```
 
