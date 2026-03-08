@@ -32,18 +32,3 @@ class MultiLinearRegression:
     def predict(self, x):
         data = np.column_stack((np.ones(len(x)), x))
         return data @ self.b
-
-
-def rss(y, y_pred):
-    """
-    soma dos quadrados dos resíduos (RSS)
-    Argumentos:
-    - y: variável dependente
-    - y_pred: predição do modelo
-    """
-    return np.sum((y - y_pred) ** 2)
-
-
-def r2(y, y_pred):
-    y_mean = np.mean(y)
-    return 1 - (np.sum((y - y_pred)** 2) / np.sum((y - y_mean) ** 2))
