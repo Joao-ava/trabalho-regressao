@@ -26,11 +26,15 @@ def load_quarterback():
 
 def load_radiation():
     """
-    Carrega os dados de radiação
-    Retorno: x, y
+    Carrega os dados de radiação.
+    CSV: [índice, Dose_de_Radiacao, mAmp, Tempo_de_Exposicao]
+    Retorno: x (mAmp, Tempo) com shape (n, 2), y (Dose) com shape (n,)
     """
-    data = np.loadtxt(DATA_PATH / 'dose_radiacao_expandido.csv', skiprows=1, delimiter=',')
-    return data[:, 0:3], data[:, 3]
+    filepath = DATA_PATH / 'dose_radiacao_expandido.csv'
+    data = np.loadtxt(filepath, skiprows=1, delimiter=',')
+    # Colunas 2 e 3: preditores (mAmp, Tempo)
+    # Coluna 1: variável resposta (Dose de Radiação)
+    return data[:, 2:4], data[:, 1]
 
 
 if __name__ == '__main__':
