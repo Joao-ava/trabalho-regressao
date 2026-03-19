@@ -2,7 +2,7 @@ import numpy as np
 from data import load_quarterback, load_radiation
 from linear_regression import SingleLinearRegression, MultiLinearRegression
 from metrics import r2, r2_adj, rmse, mae
-
+from plots import RegressionPlotter
 # Problema 1: Regressão Linear Simples 
 
 print("=-" * 30)
@@ -12,6 +12,7 @@ print("=-" * 30)
 x_qb, y_qb = load_quarterback()
 model_simple = SingleLinearRegression()
 y_pred_qb = model_simple.fit(x_qb, y_qb)
+
 
 # (A) Estimativa de mínimos quadrados: inclinação b1 e interseção b0
 print("\n(A) Estimativas de mínimos quadrados:")
@@ -58,6 +59,9 @@ print(f"\nR²   = {r2_qb:.4f}")
 print(f"RMSE = {rmse_qb:.4f}")
 print(f"MAE  = {mae_qb:.4f}")
 
+# Grafico Scatter
+plots = RegressionPlotter(x_qb, y_qb, model_simple,r2_qb)
+plots.plot_single()
 
 print()
 # Problema 2: Regressão Linear Múltipla
@@ -103,7 +107,11 @@ print(f"significativamente. Enquanto o R² comum sempre aumenta (ou permanece")
 print(f"igual) ao adicionar preditores, o R² ajustado só aumenta se o preditor")
 print(f"realmente melhora o modelo. Neste caso, ambos estão muito próximos,")
 print(f"sugerindo que os dois preditores são relevantes.")
- 
+
+# Gráfico Scatter
+plots = RegressionPlotter(x_rad, y_rad, model_full,r2_full)
+plots.plot_multi()
+
 # (E) Modelo alternativo: apenas mAmp
 x_amp = x_rad[:, 0:1]  # só a coluna mAmp
 model_amp = MultiLinearRegression()
