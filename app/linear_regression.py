@@ -25,7 +25,7 @@ class MultiLinearRegression:
 
     def fit(self, x, y):
         data = np.column_stack((np.ones(len(y)), x))
-        self.b = np.linalg.inv(data.T @ data) @ (data.T @ y)
+        self.b = np.linalg.pinv(data.T @ data) @ (data.T @ y)
         return self.predict(x)
 
 
